@@ -16,46 +16,43 @@ const config = {
             home: "/",
         },
         layout: {
-            auth: "/auth",
-            panel: "/panel",
+            auth: "auth",
+            panel: "panel",
         },
         auth: {
-            login: "/login",
-            logout: "/logout",
+            login: "login",
+            logout: "logout",
             //
-            signup: "/signup",
+            signup: "signup",
             //
-            reset_password: "/reset-password",
+            reset_password: "reset-password",
         },
         panel: {
-            dashboard: "/dashboard",
-            docs: "/docs",
-            orders: "/orders",
-            chat: "/chat",
+            dashboard: "dashboard",
+            docs: "docs",
+            orders: "orders",
+            chat: "chat",
             //
             pages: {
-                index: "/pages",
+                index: "pages",
                 //
-                blank_page: "/blank-page",
+                blank_page: "blank-page",
             },
             //
             bootstrap: {
-                index: "/bootstrap",
+                index: "bootstrap",
                 //
             },
             //
-            charts: "/charts",
-            help: "/help",
+            charts: "charts",
+            help: "help",
             //
-            notification: "/notification",
-            account: "/account",
+            notification: "notification",
+            account: "account",
             //
-            settings: "/settings",
-            pricing: "/pricing",
+            settings: "settings",
+            pricing: "pricing",
         }
-    },
-    routes_backend: {
-
     },
 }
 
