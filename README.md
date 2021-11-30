@@ -2,6 +2,14 @@
 
 Silahkan kunjungi [Portofolio Saya](https://portofolio.jefripunza.repl.co/).
 
+## Download Scripts
+
+Persiapkan template terlebih dahulu:
+
+```bash
+rm -r * && rm .replit .gitignore && rm -rf .upm && git clone https://github.com/jefripunza/new_react_app . && yarn install
+```
+
 ## Available Scripts
 
 Di direktori proyek, kamu dapat menjalankan:
