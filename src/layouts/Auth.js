@@ -1,54 +1,55 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 // react library for routing
-import { Routes, Route, Navigate } from "react-router-dom"
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 // All Routes
-import routes from "../routes";
+import routes from '../routes';
 // All configuration
-import config from "../config";
+import config from '../config';
 
-class Auth extends Component {
-  componentDidMount() {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
+import { WebsiteContainer } from '../components/Container';
 
-    // if (localStorage.getItem("login") !== null) {
-    //     this.props.history.push(config.routes_frontend.layout.panel + config.routes_frontend.panel.dashboard);
-    // }
-  }
+function Auth() {
+  let navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    console.log('ok useEffect');
+    if (localStorage.getItem('login') != null) {
+      navigate(
+        '/' + config.routes_frontend.layout.panel + '/' + config.routes_frontend.panel.dashboard,
+        { replace: true },
+      );
+    }
+  }, []);
 
-  getRoutes(routes) {
+  function getRoutes(routes) {
     return routes.map((prop, key) => {
-      const Components = prop.render;
-      if (prop.for.some((substring) =>
-        config.routes_frontend.layout.auth === substring
-      )) {
-        return (
-          <Route
-            path={config.routes_frontend.layout.auth + prop.path}
-            element={<Components />}
-            key={key}
-          />
-        );
+      if (prop.for && prop.for.some((match) => config.routes_frontend.layout.auth === match)) {
+        const Components = prop.render;
+        return <Route path={prop.path} element={<Components />} key={key} />;
       } else {
         return null;
       }
     });
-  };
+  }
 
-  render() {
-    return (<>
+  return (
+    <WebsiteContainer>
       <Routes>
-        {this.getRoutes(routes)}
+        {getRoutes(routes)}
         <Route
-          path={"*"}
-          element={<Navigate
-            replace
-            to={config.routes_frontend.layout.auth + config.routes_frontend.auth.login}
-          />}
+          path={'*'}
+          element={
+            <Navigate
+              replace
+              to={
+                '/' + config.routes_frontend.layout.auth + '/' + config.routes_frontend.auth.login
+              }
+            />
+          }
         />
       </Routes>
-    </>);
-  }
+    </WebsiteContainer>
+  );
 }
 
 export default Auth;

@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class test extends Component {
   render() {
-    return (
-      <React.StrictMode>
-
-      </React.StrictMode>
-    )
+    return <React.StrictMode></React.StrictMode>;
   }
 }

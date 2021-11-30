@@ -1,7 +1,4 @@
-import AuthLayout from "./Auth"
-import PanelLayout from "./Panel"
+import AuthLayout from './Auth';
+import PanelLayout from './Panel';
 
-export {
-  AuthLayout,
-  PanelLayout,
-}
+export { AuthLayout, PanelLayout };

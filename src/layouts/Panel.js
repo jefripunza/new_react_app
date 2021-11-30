@@ -1,58 +1,57 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 // react library for routing
-import { Routes, Route, Navigate, Outlet } from "react-router-dom"
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 // All Routes
-import routes from "../routes";
+import routes from '../routes';
 // All configuration
-import config from "../config";
+import config from '../config';
 
-import ContainerPanel from '../components/Container';
+import { WebsiteContainer } from '../components/Container';
 
-class Panel extends Component {
-  componentDidMount() {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
+function Panel() {
+  let navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    console.log('ok useEffect');
+    if (localStorage.getItem('login') === null) {
+      navigate('/' + config.routes_frontend.layout.auth + '/' + config.routes_frontend.auth.login, {
+        replace: true,
+      });
+    }
+  }, []);
 
-    // if (localStorage.getItem("login") === null) {
-    //     this.props.history.push(config.routes_frontend.layout.auth + config.routes_frontend.auth.login);
-    // }
-  }
-
-  getRoutes(routes) {
+  function getRoutes(routes) {
     return routes.map((prop, key) => {
-      if ((prop.for && prop.for.some((substring) =>
-        config.routes_frontend.layout.panel === substring
-      ))) {
+      if (prop.for && prop.for.some((match) => config.routes_frontend.layout.panel === match)) {
         const Components = prop.render;
-        return (
-          <Route
-            path={prop.path}
-            element={<Components />}
-            key={key}
-          />
-        );
+        return <Route path={prop.path} element={<Components />} key={key} />;
       } else {
         return null;
       }
     });
-  };
+  }
 
-  render() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    return (<>
-      <Outlet />
+  return (
+    <WebsiteContainer>
       <Routes>
-        {this.getRoutes(routes)}
+        {getRoutes(routes)}
         <Route
-          path={"*"}
-          element={<Navigate
-            replace
-            to={"/" + config.routes_frontend.layout.panel + "/" + config.routes_frontend.panel.dashboard}
-          />}
+          path={'*'}
+          element={
+            <Navigate
+              replace
+              to={
+                '/' +
+                config.routes_frontend.layout.panel +
+                '/' +
+                config.routes_frontend.panel.dashboard
+              }
+            />
+          }
         />
       </Routes>
-    </>);
-  }
+    </WebsiteContainer>
+  );
 }
 
 export default Panel;

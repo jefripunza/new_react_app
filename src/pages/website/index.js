@@ -1,5 +1,3 @@
-import HomeWebsite from "./NewReact"
+import HomeWebsite from './NewReact';
 
-export {
-  HomeWebsite,
-}
+export { HomeWebsite };

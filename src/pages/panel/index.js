@@ -1,9 +1,5 @@
-import DashboardPanel from "./Dashboard"
+import DashboardPanel from './Dashboard';
 
-import SettingsPanel from "./Settings"
+import SettingsPanel from './Settings';
 
-export {
-  DashboardPanel,
-
-  SettingsPanel,
-}
+export { DashboardPanel, SettingsPanel };
