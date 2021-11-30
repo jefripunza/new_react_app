@@ -31,6 +31,26 @@ export default class App extends Component {
             <Route path={'*'} element={<Outlet />} />
           </Route>
 
+          {/* Correct Login Route */}
+          {['/login', '/masuk'].map((path) => {
+            return (
+              <Route
+                path={path}
+                element={
+                  <Navigate
+                    replace
+                    to={
+                      '/' +
+                      config.routes_frontend.layout.auth +
+                      '/' +
+                      config.routes_frontend.auth.login
+                    }
+                  />
+                }
+              />
+            );
+          })}
+
           {/* add index routes to routes.js */}
           {routes
             .filter((route) => {
