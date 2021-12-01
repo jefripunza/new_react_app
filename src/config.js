@@ -4,7 +4,7 @@ const env = process.env.NODE_ENV;
 const isProduction = env === 'production';
 
 const config = {
-  app_name: 'Portfolio Jefri Herdi Triyanto',
+  app_name: 'New React App',
 
   separate: ' | ',
   backend_url: isProduction ? '/' : json.server,

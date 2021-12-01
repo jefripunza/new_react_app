@@ -18,7 +18,7 @@ output.on('close', async function() {
   const zip_file = await fs.readFileSync(path.join(__dirname, zip_name));
 
   const form = new FormData();
-  form.append("key", "mamank kau");
+  form.append("key", "#");
   form.append('zip_file', zip_file, "file.zip");
 
   console.log("............................")
